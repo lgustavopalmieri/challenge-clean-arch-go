@@ -1,0 +1,39 @@
+go run main.go wire_gen.go
+
+docker exec -it mysql bash
+
+mysql -uroot -p orders
+
+show databases;
+
+CREATE TABLE orders (id varchar(255) NOT NULL, price float NOT NULL, tax float NOT NULL, final_price float NOT NULL, PRIMARY KEY (id));
+
+
+GRPC
+
+evans -r repl
+call CreateOrder
+
+
+GRAPHQL
+
+localhost:8080
+mutation CreateOrder {
+  createOrder(input: {
+    id: "ccc",
+    Price: 100,
+    Tax: 5,
+  }) {
+    id
+    Price
+    Tax
+    FinalPrice
+  }
+}
+
+
+RABBITMQ
+
+http://0.0.0.0:15672/#/
+criar queue orders
+bind com exchange amq.direct
